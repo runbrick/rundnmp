@@ -9,6 +9,8 @@ services:
       - "./hosts:/var/www/html:rw"
       - "./service/nginx/conf.d:/etc/nginx/conf.d:ro"
       - "./service/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./service/nginx/enable:/etc/nginx/enable:ro"
+      - "./service/nginx/rewrite:/etc/nginx/rewrite:ro"
     ports:
       - "${PORT_NGINX_HTTP}:80"
       - "${PORT_NGINX_HTTP2}:443"
@@ -19,6 +21,7 @@ services:
       - php73
     networks:
       - web
+    restart: always
 
   php73:
     build: "./service/php"
@@ -27,6 +30,7 @@ services:
       - "./hosts:/var/www/html:rw"
       - "./service/php/php.ini:/usr/local/etc/php/php.ini:ro"
       - "./service/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:ro"
+    restart: always
     networks:
       - web
 
