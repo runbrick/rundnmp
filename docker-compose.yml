@@ -6,7 +6,7 @@ services:
     volumes:
       - "./log/nginx:/var/log/nginx:rw"
       # 项目目录
-      - "./hosts:/usr/share/nginx/html:rw"
+      - "./hosts:/var/www/html:rw"
       - "./service/nginx/conf.d:/etc/nginx/conf.d:ro"
       - "./service/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
     ports:
