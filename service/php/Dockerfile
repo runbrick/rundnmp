@@ -31,3 +31,8 @@ RUN pecl install msgpack \
  && pecl install xdebug \
  && docker-php-ext-enable redis memcached mongodb xdebug swoole
 
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
+    && composer clear-cache
+
