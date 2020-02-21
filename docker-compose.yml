@@ -50,15 +50,14 @@ services:
     networks:
       - web
       
-  redis:
+  redis507:
     image: "redis:5.0.7-alpine"
     volumes:
       - "./service/redis/data:/data:rw"
       - "./service/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro"
     ports:
       - "${REDIS_PORT}:6379"
-    command: 
-      - redis-server /usr/local/etc/redis/redis.conf"
+    command: [redis-server,/usr/local/etc/redis/redis.conf]
     restart: always
     expose:
       - "6379"
