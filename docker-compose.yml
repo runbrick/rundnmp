@@ -34,6 +34,17 @@ services:
     networks:
       - web
 
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    environment: 
+      # PMA_ARBITRARY: 1 # 设置与任意服务器连接
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_PASSWORD: admin
+    restart: always
+    networks:
+        - web
+
   mysql:
     image: "mysql:8.0"
     volumes:
@@ -45,6 +56,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     restart: always
+    command: --default-authentication-plugin=mysql_native_password
     expose:
       - "3306"
     networks:
